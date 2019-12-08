@@ -6,7 +6,7 @@ After=network-online.target nss-lookup.target
 
 [Service]
 # if you have systemd >= 240, you probably want to use Type=exec instead
-Type=simple
+Type=exec
 User=shared
 ExecStart=/usr/bin/qbittorrent-nox
 TimeoutStopSec=infinity

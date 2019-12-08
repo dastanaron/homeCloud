@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
+#see https://github.com/qbittorrent/qBittorrent/wiki
 #user shared password 123456789
 
-mkdir -p /home/shared/
+mkdir -p /home/shared/.config/
 useradd -d /home/shared/ shared -p 123456789
 
-cp -r qBittorrent/ $HOME/.config/
+cp -r qBittorrent/ /home/shared/.config/
+
+chown shared:shared -R /home/shared/
 
 add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable
 apt update && sudo apt install -y qbittorrent-nox
@@ -14,4 +17,4 @@ cp qBittorrent/qbittorrent.service /etc/systemd/system/qbittorrent.service
 
 systemctl daemon-reload
 
-systemctl stop qbittorrent
+systemctl start qbittorrent
