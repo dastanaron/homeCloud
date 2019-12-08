@@ -1,0 +1,15 @@
+[Unit]
+Description=qBittorrent Daemon Service
+Documentation=man:qbittorrent-nox(1)
+Wants=network-online.target
+After=network-online.target nss-lookup.target
+
+[Service]
+# if you have systemd >= 240, you probably want to use Type=exec instead
+Type=simple
+User=shared
+ExecStart=/usr/bin/qbittorrent-nox
+TimeoutStopSec=infinity
+
+[Install]
+WantedBy=multi-user.target
