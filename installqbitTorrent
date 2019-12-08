@@ -18,3 +18,5 @@ cp qBittorrent/qbittorrent.service /etc/systemd/system/qbittorrent.service
 systemctl daemon-reload
 
 systemctl start qbittorrent
+
+systemctl enamle qBittorrent
