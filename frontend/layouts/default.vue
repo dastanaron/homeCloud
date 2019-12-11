@@ -82,7 +82,7 @@
       :fixed="fixed"
       app
     >
-      <span>&copy; 2019</span>
+      <span>Dastanaron HomeCloud production &copy; {{ currentYear }}</span>
     </v-footer>
   </v-app>
 </template>
@@ -104,12 +104,23 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Other',
+          to: '/other'
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'HomeCloud'
+    }
+  },
+  computed: {
+    currentYear() {
+      const date = new Date();
+      return date.getFullYear();
     }
   }
 }

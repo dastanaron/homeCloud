@@ -18,6 +18,8 @@
     "vue-i18n": "^8.15.1"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.0.0"
+    "@nuxtjs/vuetify": "^1.0.0",
+    "ts": "^0.2.2",
+    "typescript": "^3.7.3"
   }
 }

@@ -20,13 +20,8 @@
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
-//const Cookie = process.client ? require('~/Library/Cookie.js') : null;
-//import {Cookie} from '~/Library/Cookie.js';
 
 export default {
-  mounted() {
-    //console.log(Cookie);
-  },
   components: {
 
   }
