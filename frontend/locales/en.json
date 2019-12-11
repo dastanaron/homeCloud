@@ -1,0 +1,12 @@
+{
+  "links": {
+    "home": "Home"
+  },
+  "home": {
+    "title": "Welcome",
+    "introduction": "This is an introduction in English."
+  },
+  "control": {
+    "switchDrawer": "Switch drawer (click me)"
+  }
+}
