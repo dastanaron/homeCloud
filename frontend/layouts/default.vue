@@ -23,6 +23,29 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+        <v-list>
+          <v-list-item>
+            <h3>Внешние</h3>
+          </v-list-item>
+        </v-list>
+      <v-list>
+        <a href="http://torrent.playmovie.home" class="v-list-item nostyle">
+          <v-list-item-action>
+            <v-icon>mdi-autorenew</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            Torrent
+          </v-list-item-content>
+        </a>
+        <a href="http://owncloud.home/" class="v-list-item nostyle">
+          <v-list-item-action>
+            <v-icon>mdi-cloud-upload</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            Cloud platform
+          </v-list-item-content>
+        </a>
+      </v-list>
     </v-navigation-drawer>
     <v-app-bar
       :clipped-left="clipped"
@@ -99,16 +122,6 @@ export default {
           icon: 'mdi-apps',
           title: 'Welcome',
           to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Other',
-          to: '/other'
         }
       ],
       miniVariant: false,

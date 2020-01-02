@@ -1,0 +1,9 @@
+a {
+	&.nostyle {
+		text-decoration:none;
+		color: inherit !important;
+	}
+	&.nostyle:hover {
+		text-decoration:none;
+	}
+}
