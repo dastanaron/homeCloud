@@ -11,7 +11,7 @@
       <v-card-title>Movie Name</v-card-title>
     </v-img>
 
-    <v-card-subtitle class="pb-0">file name</v-card-subtitle>
+    <v-card-subtitle class="pb-0">{{ path }}</v-card-subtitle>
 
     <v-card-text class="text--primary">
       <div>.avi</div>
@@ -28,3 +28,16 @@
     </v-card-actions>
   </v-card>
 </template>
+
+<script>
+
+export default {
+  name: 'movie-preview',
+  props: {
+    path: {
+      type: String,
+      required: true,
+    }
+  }
+}
+</script>

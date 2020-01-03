@@ -1,8 +1,10 @@
 <template>
   <v-layout>
-    <v-row>
-      <v-col :md="3" v-for="i in 12" :key="i">
-        <movie-preview></movie-preview>
+    <v-row v-if="videoFiles.length > 0">
+      <v-col :md="3" v-for="(filePath, index) in videoFiles" :key="index">
+        <movie-preview
+          :path="filePath"
+        ></movie-preview>
       </v-col>
     </v-row>
     
@@ -10,21 +12,45 @@
 </template>
 
 <script>
-import MoviePreview from '~/components/MoviePreview.vue'
+import MoviePreview from '~/components/MoviePreview.vue';
 
+const GET_VIDEO_FILES_COMMAND = 'getVideoFiles';
 
 export default {
   async asyncData ({ params }) {
-    const data = {};
-    console.log(params);
-    
-    return { data: data }
+    if (process.server) {
+      //return { videoFiles: ["/home/dastanaron/Видео/nuxt.mp4","/home/dastanaron/Видео/randomcolor.mp4"] }
+    }
   },
   data: () => ({
-
+    videoFiles: [],
   }),
+  methods: {
+    loadVideoFiles() {
+      let socket = new WebSocket(this.$root.context.env.MOVIE_SOCKET);
+
+      socket.onopen = (event) => {
+        socket.send(JSON.stringify({command: GET_VIDEO_FILES_COMMAND, path: this.$root.context.env.PATH_TO_VIDEO}));
+      };
+
+      socket.onmessage = function(event) {
+        let decodedMessage = JSON.parse(event.data);
+        if(decodedMessage.data !== undefined) {
+          this.videoFiles = decodedMessage.data;
+        }
+      };
+
+      socket.onclose = function(event) {
+        if (event.wasClean) {
+          console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+        } else {
+          console.log('[close] Соединение прервано');
+        }
+      };
+    },
+  },
   mounted() {
-    
+    this.loadVideoFiles();
   },
   components: {
     MoviePreview,
