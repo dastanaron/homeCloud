@@ -122,6 +122,11 @@ export default {
           icon: 'mdi-apps',
           title: 'Welcome',
           to: '/'
+        },
+        {
+          icon: ' mdi-library-video',
+          title: 'Movies',
+          to: '/movies',
         }
       ],
       miniVariant: false,
