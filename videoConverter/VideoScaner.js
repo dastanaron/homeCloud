@@ -16,7 +16,7 @@ const { exec, spawn } = require('child_process');
 
 function checkVideoByMimeType(pathToFile) {
     return new Promise((resolve, reject) => {
-        exec(`file --mime -b ${pathToFile}`, (error, stdout, stderr) => {
+        exec(`file --mime -b '${pathToFile}'`, (error, stdout, stderr) => {
             if (error === null) {
                 resolve(stdout.toString().search(/video/) > -1);
             } else {

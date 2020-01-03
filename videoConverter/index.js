@@ -16,12 +16,15 @@ if (arguments.length < 2) {
 	let videoFiles = await VideoScaner.getVideoFiles(arguments[0])
 
 	for (let videoFile of videoFiles) {
-
-        let isConverted = false;
-
-        console.log(`converting file ${videoFile}...`);
         try {
-            VideoConverter.convertToBrowserSupportedFormat(videoFile, arguments[1]);
+            let subprocess = VideoConverter.convertToBrowserSupportedFormat(videoFile, arguments[1]);
+            subprocess.on('close', (code) => {
+              if (code !== 0) {
+                console.log(`This convertation has been failed with code ${code}. Command: |${subprocess.spawnargs[2]}|`);
+              } else {
+                console.log(`The file ${videoFile} close code: ${code}`);
+              }
+            })
         } catch(e) {
             console.error(e);
         }

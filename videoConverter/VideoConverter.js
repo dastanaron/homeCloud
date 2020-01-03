@@ -12,7 +12,7 @@ const fs = require('fs');
 	}
 
 	return new Promise((resolve, reject) => {
-	    exec(`ffmpeg -y -i ${inputFilePath} -vcodec libx264 -acodec mp3 ${resolvedOutputPath}/${pathInfo.name}.mp4`, (error, stdout, stderr) => {
+	    exec(`ffmpeg -y -i ${inputFilePath} -vcodec libx264 -acodec mp3 '${resolvedOutputPath}/${pathInfo.name}.mp4'`, (error, stdout, stderr) => {
 			if (error !== null) {
 				reject({
 					error: error,
@@ -32,7 +32,9 @@ function convertToBrowserSupportedFormat(inputFilePath, outputFilePathFolder) {
 		fs.mkdirSync(resolvedOutputPath, { recursive: true });
 	}
 
-	exec(`ffmpeg -y -i ${inputFilePath} -vcodec libx264 -acodec mp3 ${resolvedOutputPath}/${pathInfo.name}.mp4`);
+	const result = exec(`ffmpeg -y -i '${inputFilePath}' -vcodec libx264 -acodec mp3 '${resolvedOutputPath}/${pathInfo.name}.mp4'`);
+
+	return result;
 };
 
 
