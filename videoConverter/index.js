@@ -16,6 +16,7 @@ if (arguments.length < 2) {
 	let videoFiles = await VideoScaner.getVideoFiles(arguments[0])
 
 	for (let videoFile of videoFiles) {
+        //todo: добавить нарезку кадра для превью
         try {
             let subprocess = VideoConverter.convertToBrowserSupportedFormat(videoFile, arguments[1]);
             subprocess.on('close', (code) => {

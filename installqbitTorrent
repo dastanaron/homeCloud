@@ -19,4 +19,4 @@ systemctl daemon-reload
 
 systemctl start qbittorrent
 
-systemctl enable qBittorrent
+systemctl enable qbittorrent.service 
