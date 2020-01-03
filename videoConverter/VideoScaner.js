@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { exec, spawn } = require('child_process');
 
-function checkVideoByMimeType(pathToFile) {
+/*function checkVideoByMimeType(pathToFile) {
 	return new Promise((resolve, reject) => {
 	    exec(`mimetype -M --output-format %m ${pathToFile}`, (error, stdout, stderr) => {
 			if (error === null) {
@@ -12,6 +12,18 @@ function checkVideoByMimeType(pathToFile) {
 			}
 		});
 	});
+};*/
+
+function checkVideoByMimeType(pathToFile) {
+    return new Promise((resolve, reject) => {
+        exec(`file --mime -b ${pathToFile}`, (error, stdout, stderr) => {
+            if (error === null) {
+                resolve(stdout.toString().search(/video/) > -1);
+            } else {
+                reject(stderr);
+            }
+        });
+    });
 };
 
 async function getVideoFiles(target) {
