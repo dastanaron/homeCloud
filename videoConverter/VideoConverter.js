@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 
-function convertToBrowserSupportedFormat(inputFilePath, outputFilePathFolder) {
+/*function convertToBrowserSupportedFormat(inputFilePath, outputFilePathFolder) {
 	const pathInfo = path.parse(inputFilePath);
 	const resolvedOutputPath = path.resolve(outputFilePathFolder);
 
@@ -22,6 +22,17 @@ function convertToBrowserSupportedFormat(inputFilePath, outputFilePathFolder) {
 			resolve(true);
 		});
 	});
+};*/
+
+function convertToBrowserSupportedFormat(inputFilePath, outputFilePathFolder) {
+	const pathInfo = path.parse(inputFilePath);
+	const resolvedOutputPath = path.resolve(outputFilePathFolder);
+
+	if(!fs.existsSync(resolvedOutputPath)) {
+		fs.mkdirSync(resolvedOutputPath, { recursive: true });
+	}
+
+	exec(`ffmpeg -y -i ${inputFilePath} -vcodec libx264 -acodec mp3 ${resolvedOutputPath}/${pathInfo.name}.mp4`);
 };
 
 

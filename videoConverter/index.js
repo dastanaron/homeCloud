@@ -19,12 +19,11 @@ if (arguments.length < 2) {
 
         let isConverted = false;
 
+        console.log(`converting file ${videoFile}...`);
         try {
-            converted = await VideoConverter.convertToBrowserSupportedFormat(videoFile, arguments[1]);
+            VideoConverter.convertToBrowserSupportedFormat(videoFile, arguments[1]);
         } catch(e) {
             console.error(e);
         }
-        
-        console.log(`converting file ${videoFile} result: ${converted}`);
     }
 })();
