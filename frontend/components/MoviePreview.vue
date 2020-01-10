@@ -74,7 +74,16 @@ export default {
   }),
   computed: {
       srcToVideo() {
-        return this.isMovieDialogShow ? this.$root.context.env.VIDEO_FILE_PATH_LINK + '/' + this.pathInfo.base : '';
+        if (this.$root.context.env.PATH_TO_VIDEO === this.pathInfo.dir) {
+          return this.isMovieDialogShow ? this.$root.context.env.VIDEO_FILE_PATH_LINK + '/' + this.pathInfo.base : '';
+        } else {
+          let parsedEnvPath = this.$root.context.env.PATH_TO_VIDEO.split('/');
+          let parsedPathInfoDir = this.pathInfo.dir.split('/');
+          let differentElementsInParsedPath = parsedPathInfoDir.length - parsedEnvPath.length;
+          let pathToFile = parsedPathInfoDir.splice(-differentElementsInParsedPath).join('/');
+          return this.isMovieDialogShow ? this.$root.context.env.VIDEO_FILE_PATH_LINK + '/' + pathToFile + '/' + this.pathInfo.base : '';
+        }
+        
       }
   },
   methods: {
