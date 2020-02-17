@@ -1,6 +1,6 @@
+const fs = require('fs');
 const VideoScaner = require('./VideoScaner.js');
 const VideoConverter = require('./VideoConverter.js');
-const fs = require('fs');
 
 const arguments = process.argv.slice(2);
 if (arguments.length < 2) {

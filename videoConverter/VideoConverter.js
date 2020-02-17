@@ -1,9 +1,9 @@
-const { exec, spawn } = require('child_process');
+const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
 
-/*function convertToBrowserSupportedFormat(inputFilePath, outputFilePathFolder) {
+/* function convertToBrowserSupportedFormat(inputFilePath, outputFilePathFolder) {
 	const pathInfo = path.parse(inputFilePath);
 	const resolvedOutputPath = path.resolve(outputFilePathFolder);
 
@@ -22,22 +22,22 @@ const fs = require('fs');
 			resolve(true);
 		});
 	});
-};*/
+}; */
 
 function convertToBrowserSupportedFormat(inputFilePath, outputFilePathFolder) {
-	const pathInfo = path.parse(inputFilePath);
-	const resolvedOutputPath = path.resolve(outputFilePathFolder);
+  const pathInfo = path.parse(inputFilePath);
+  const resolvedOutputPath = path.resolve(outputFilePathFolder);
 
-	if(!fs.existsSync(resolvedOutputPath)) {
-		fs.mkdirSync(resolvedOutputPath, { recursive: true });
-	}
+  if (!fs.existsSync(resolvedOutputPath)) {
+    fs.mkdirSync(resolvedOutputPath, { recursive: true });
+  }
 
-	const result = exec(`ffmpeg -y -i '${inputFilePath}' -vcodec libx264 -acodec mp3 '${resolvedOutputPath}/${pathInfo.name}.mp4'`);
+  const result = exec(`ffmpeg -y -i '${inputFilePath}' -vcodec libx264 -acodec mp3 '${resolvedOutputPath}/${pathInfo.name}.mp4'`);
 
-	return result;
-};
+  return result;
+}
 
 
 module.exports = {
-	convertToBrowserSupportedFormat,
-}
+  convertToBrowserSupportedFormat,
+};
