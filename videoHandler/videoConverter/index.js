@@ -13,12 +13,12 @@ if (arguments.length < 2) {
         throw new Error('Undefined path');
     }
 
-	let videoFiles = await VideoScaner.getVideoFiles(arguments[0])
+	let videoFiles = await VideoScaner.getVideoFiles(arguments[0]);
 
 	for (let videoFile of videoFiles) {
         //todo: добавить нарезку кадра для превью
         try {
-            let subprocess = VideoConverter.convertToBrowserSupportedFormat(videoFile, arguments[1]);
+            let subprocess = VideoConverter.convertSilent(videoFile, arguments[1]);
             subprocess.on('close', (code) => {
               if (code !== 0) {
                 console.log(`This convertation has been failed with code ${code}. Command: |${subprocess.spawnargs[2]}|`);

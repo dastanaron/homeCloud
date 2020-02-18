@@ -1,0 +1,11 @@
+{
+  "name": "VideoHandler",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "dastanaron <flow199@yandex.ru>",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.24.0",
+    "ws": "^7.2.1"
+  }
+}
