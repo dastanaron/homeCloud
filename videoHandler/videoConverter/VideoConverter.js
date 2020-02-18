@@ -47,13 +47,13 @@ async function convertWithProgress(inputFilePath, outputFilePathFolder, filename
       let duration = timeToDuration(matchedTime[1]).asSeconds();
       let percent = Math.round(duration * 100 / totalDuration);
       if (typeof callback === 'function') {
-        callback(percent);
+        callback(percent, false);
       }
     }
   });
 
   convert.on('close', (code) => {
-    console.log(`child process exited with code ${code}`);
+    callback(100, true);
   });
 }
 
